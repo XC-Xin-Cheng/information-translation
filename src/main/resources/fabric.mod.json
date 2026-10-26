@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "information_translation",
+	"version": "${version}",
+	"name": "Information Translation",
+	"description": "Pure client-side translation for chat, written books and signs using free AI translation models. Purely client-side translation mod: chat / books / signs, free models, built-in Mod Menu settings screen.",
+	"authors": [
+		"Information Translation contributors"
+	],
+	"contact": {
+		"homepage": "https://github.com/",
+		"sources": "https://github.com/"
+	},
+	"license": "MIT",
+	"icon": "assets/information_translation/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.infotrans.InfoTranslation"
+		],
+		"modmenu": [
+			"dev.infotrans.modmenu.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		{
+			"config": "information_translation.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

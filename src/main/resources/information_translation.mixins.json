@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "dev.infotrans.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"ChatComponentMixin",
+		"SignTextMixin",
+		"BookViewScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

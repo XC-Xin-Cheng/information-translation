@@ -1,0 +1,14 @@
+pluginManagement {
+	repositories {
+		// pre-seeded cache for the loom plugin jar (flaky link to maven.fabricmc.net here)
+		maven { url = uri("${settingsDir}/localrepo") }
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+	}
+}
+
+rootProject.name = 'information-translation'

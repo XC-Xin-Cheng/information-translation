@@ -1,0 +1,14 @@
+.gradle/
+build/
+out/
+run/
+.idea/
+*.iml
+.vscode/
+.cache/
+localrepo/
+.gradle-home/
+attempt.log
+buildlog*.txt
+buildlog2.tmp
+retry_build.sh

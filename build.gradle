@@ -1,0 +1,58 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+base { archivesName = project.archives_base_name }
+
+repositories {
+	// Loom adds the essential maven repositories (Mojang, FabricMC) automatically.
+	// localrepo pre-seeds artifacts whose single-stream downloads time out on this link.
+	exclusiveContent {
+		forRepository { maven { url = uri("${projectDir}/localrepo") } }
+		filter {
+			includeModule('net.fabricmc.fabric-api', 'fabric-api')
+			includeModule('net.fabricmc', 'fabric-loader')
+		}
+	}
+
+	// Mod Menu API jar is vendored in libs/ (compileOnly), so no extra repository is needed.
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API (client events / keybinding helpers)
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// Mod Menu API — compile only. At runtime the user installs Mod Menu itself.
+	compileOnly files('libs/modmenu-18.0.2.jar')
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_information-translation" }
+	}
+}
